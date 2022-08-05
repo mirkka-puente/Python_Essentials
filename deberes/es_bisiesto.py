@@ -46,8 +46,8 @@ Por supuesto, puede (y debe) usar la función previamente escrita y probada
 Lo alentamos a que use una lista con los meses. 
 Puede crearlo dentro de la función: este truco acortará significativamente el código.
 
-- Anio bisiesto -> febrero tiene 29 dias
-- Anio normal:
+- Año bisiesto -> febrero tiene 29 dias
+- Año normal:
     Tienen 31 días: Enero(1), marzo(3), mayo(5), julio(7), agosto(8), octubre(10) y (12)diciembre.
 
     Tienen 30 días: Abril(4), junio(6), septiembre(9) y noviembre(11).
@@ -93,10 +93,52 @@ for i in range(len(testYears)):
               else:
 
                             print("Failed")
-            
 
+                    
+"""Su tarea es escribir y probar una función que toma tres argumentos (un año, un mes y un 
+día del mes) y devuelve los días correspondiente del año, o devuelve None si alguno de los 
+argumentos es inválido.Use las funciones previamente escritas y probadas. 
+Agregue algunos casos de prueba al código. Esta prueba es solo un comienzo."""
 
+def dayOfYear(year, month, day):
+    count = 0
+    if month <= 12 and day <= 31:
+        for m in range(1, month):
+            count = count + daysInMonth(year, m)
+    else:
+        return None
+    count = count + day
+    return count
+  
+print('\n')          
 
+testYY = [1900, 2000, 2016, 1987, 2022, 2021]
+
+testMM = [12, 12, 1, 4, 1, 15]
+
+testDD = [31, 31, 1, 25, 31, 10]
+
+testR = [365, 366, 1, 115, 31, None]
+
+for i in range(len(testYY)):
+
+              y = testYY[i]
+
+              m = testMM[i]
+              
+              d = testDD[i]
+
+              print(y, m, d, "->", end="")
+
+              r = dayOfYear(y, m, d)
+
+              if r == testR[i]:
+
+                            print("OK")
+
+              else:
+
+                            print("Failed")
 
 
 
